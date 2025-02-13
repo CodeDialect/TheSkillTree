@@ -9,35 +9,55 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export function CourseCard({ course }: { course: Course }) {
   const { addToCart } = useCart();
 
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="p-0">
-        <div className="aspect-video w-full overflow-hidden rounded-t-lg">
-          <img
-            src={course.imageUrl}
-            alt={course.title}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </CardHeader>
-      <CardContent className="flex-grow p-6">
-        <CardTitle className="line-clamp-2 mb-2">{course.title}</CardTitle>
-        <CardDescription className="line-clamp-3">
-          {course.description}
-        </CardDescription>
-      </CardContent>
-      <CardFooter className="p-6 pt-0">
-        <div className="flex w-full items-center justify-between">
-          <span className="text-lg font-semibold">
-            ${Number(course.price).toFixed(2)}
-          </span>
-          <Button onClick={() => addToCart(course)}>Add to Cart</Button>
-        </div>
-      </CardFooter>
-    </Card>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Card className="flex flex-col overflow-hidden border-2 border-primary/20 shadow-lg">
+        <CardHeader className="p-0">
+          <div className="aspect-video w-full overflow-hidden">
+            <img
+              src={course.imageUrl}
+              alt={course.title}
+              className="h-full w-full object-cover transform transition-transform hover:scale-110 duration-300"
+            />
+          </div>
+        </CardHeader>
+        <CardContent className="flex-grow p-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="h-5 w-5 text-yellow-400" />
+            <CardTitle className="line-clamp-2 text-xl font-bold text-primary">
+              {course.title}
+            </CardTitle>
+          </div>
+          <CardDescription className="line-clamp-3 text-base">
+            {course.description}
+          </CardDescription>
+        </CardContent>
+        <CardFooter className="p-6 pt-0 bg-primary/5">
+          <div className="flex w-full items-center justify-between">
+            <span className="text-lg font-bold text-primary">
+              ${Number(course.price).toFixed(2)}
+            </span>
+            <Button 
+              onClick={() => addToCart(course)}
+              className="rounded-full font-bold"
+            >
+              Add to Cart 🎈
+            </Button>
+          </div>
+        </CardFooter>
+      </Card>
+    </motion.div>
   );
 }
