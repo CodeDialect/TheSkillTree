@@ -7,6 +7,7 @@ import { CartSheet } from "../cart/cart-sheet";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
+  { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
