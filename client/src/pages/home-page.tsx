@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CourseGrid } from "@/components/courses/course-grid";
 import { useQuery } from "@tanstack/react-query";
 import { Course } from "@shared/schema";
-import { Loader2, Sparkles, Book, Star, Rocket } from "lucide-react";
+import { Loader2, Sparkles, Book, Star, Rocket, Code, Megaphone, Brain, Video } from "lucide-react";
 import { motion } from "framer-motion";
 
 const container = {
@@ -20,6 +20,33 @@ const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 }
 };
+
+const demoCategories = [
+  {
+    icon: <Code className="h-12 w-12" />,
+    title: "Development",
+    description: "Learn programming and web development",
+    color: "text-blue-500",
+  },
+  {
+    icon: <Megaphone className="h-12 w-12" />,
+    title: "Digital Marketing",
+    description: "Master online marketing strategies",
+    color: "text-green-500",
+  },
+  {
+    icon: <Brain className="h-12 w-12" />,
+    title: "Self Improvement",
+    description: "Enhance your personal skills",
+    color: "text-purple-500",
+  },
+  {
+    icon: <Video className="h-12 w-12" />,
+    title: "Video Editing",
+    description: "Create amazing video content",
+    color: "text-pink-500",
+  },
+];
 
 export default function HomePage() {
   const { data: courses, isLoading } = useQuery<Course[]>({
@@ -90,6 +117,37 @@ export default function HomePage() {
             </motion.div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Course Categories Section */}
+      <section className="bg-white py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
+        <div className="container relative">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              Explore <span className="text-primary">Courses</span> By Category
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Discover the perfect course that matches your interests and goals
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {demoCategories.map((category, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              >
+                <div className={`mb-4 ${category.color}`}>
+                  {category.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+                <p className="text-muted-foreground">{category.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Popular Courses Section */}
