@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CourseGrid } from "@/components/courses/course-grid";
 import { useQuery } from "@tanstack/react-query";
 import { Course } from "@shared/schema";
-import { Loader2, Sparkles, Book, Star, Rocket, Code, Megaphone, Brain, Video, Users, GraduationCap, Award, PlayCircle } from "lucide-react";
+import { Loader2, Sparkles, Book, Star, Rocket, Code, Megaphone, Brain, Video, Users, GraduationCap, Award, PlayCircle, CalendarIcon } from "lucide-react"; // Added CalendarIcon import
 import { motion } from "framer-motion";
 
 const container = {
@@ -57,7 +57,7 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-50 to-white py-24">
-        <motion.div 
+        <motion.div
           className="container"
           variants={container}
           initial="hidden"
@@ -71,20 +71,28 @@ export default function HomePage() {
             </motion.div>
             <motion.div variants={item}>
               <p className="text-xl text-muted-foreground">
-                Join our exciting learning adventure with fun courses in Math, 
+                Join our exciting learning adventure with fun courses in Math,
                 Public Speaking, Reading, and more! Start your journey today! ✨
               </p>
             </motion.div>
             <motion.div variants={item}>
-              <Button size="lg" asChild className="rounded-full text-lg gap-2">
-                <Link href="/courses">
-                  <Rocket className="h-5 w-5" />
-                  Start Learning!
-                </Link>
-              </Button>
+              <div className="flex items-center gap-4 justify-center">
+                <Button size="lg" asChild className="rounded-full text-lg gap-2">
+                  <Link href="/courses">
+                    <Rocket className="h-5 w-5" />
+                    Start Learning!
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="rounded-full text-lg gap-2">
+                  <Link href="/book-demo">
+                    <CalendarIcon className="h-5 w-5" />
+                    Book Demo Class
+                  </Link>
+                </Button>
+              </div>
             </motion.div>
           </div>
-          
+
         </motion.div>
       </section>
 
@@ -92,13 +100,13 @@ export default function HomePage() {
       <section className="py-16 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
         <div className="container relative">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
             variants={container}
             initial="hidden"
             animate="show"
           >
-            <motion.div 
+            <motion.div
               variants={item}
               className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
@@ -109,7 +117,7 @@ export default function HomePage() {
               <p className="text-muted-foreground">Total Courses</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={item}
               className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
@@ -120,7 +128,7 @@ export default function HomePage() {
               <p className="text-muted-foreground">Free Classes</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={item}
               className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
@@ -131,7 +139,7 @@ export default function HomePage() {
               <p className="text-muted-foreground">Active Students</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={item}
               className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
@@ -186,7 +194,7 @@ export default function HomePage() {
 
       {/* Popular Courses Section */}
       <section className="bg-white py-16">
-        <motion.div 
+        <motion.div
           className="container flex flex-col gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -216,13 +224,13 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="bg-gradient-to-b from-purple-50 to-white py-16">
-        <motion.div 
+        <motion.div
           className="container grid md:grid-cols-3 gap-8 text-center"
           variants={container}
           initial="hidden"
           animate="show"
         >
-          <motion.div 
+          <motion.div
             variants={item}
             className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >
@@ -231,7 +239,7 @@ export default function HomePage() {
             <p className="text-muted-foreground">Learn through games and interactive lessons!</p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={item}
             className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >
@@ -240,7 +248,7 @@ export default function HomePage() {
             <p className="text-muted-foreground">Learn from friendly and caring teachers!</p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={item}
             className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >

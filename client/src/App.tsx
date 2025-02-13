@@ -10,7 +10,7 @@ import AuthPage from "@/pages/auth-page";
 import CoursesPage from "@/pages/courses-page";
 import AboutPage from "@/pages/about-page";
 import ContactPage from "@/pages/contact-page";
-import { ProtectedRoute } from "./lib/protected-route";
+import BookingPage from "@/pages/booking-page";
 
 function Router() {
   return (
@@ -23,6 +23,7 @@ function Router() {
           <Route path="/courses" component={CoursesPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
+          <Route path="/book-demo" component={BookingPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
