@@ -27,8 +27,9 @@ export default function HomePage() {
   });
 
   return (
-    <div className="flex flex-col gap-16 pb-16">
-      <section className="bg-gradient-to-b from-primary/10 to-background py-24">
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-blue-50 to-white py-24">
         <motion.div 
           className="container"
           variants={container}
@@ -59,9 +60,10 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section className="container">
+      {/* Popular Courses Section */}
+      <section className="bg-white py-16">
         <motion.div 
-          className="flex flex-col gap-8"
+          className="container flex flex-col gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -88,38 +90,39 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section className="container">
+      {/* Features Section */}
+      <section className="bg-gradient-to-b from-purple-50 to-white py-16">
         <motion.div 
-          className="grid md:grid-cols-3 gap-8 text-center"
+          className="container grid md:grid-cols-3 gap-8 text-center"
           variants={container}
           initial="hidden"
           animate="show"
         >
           <motion.div 
             variants={item}
-            className="p-6 rounded-2xl bg-primary/5 flex flex-col items-center gap-4"
+            className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >
             <Star className="h-12 w-12 text-yellow-400" />
-            <h3 className="text-xl font-bold">Fun Learning</h3>
-            <p>Learn through games and interactive lessons!</p>
+            <h3 className="text-xl font-bold text-primary">Fun Learning</h3>
+            <p className="text-muted-foreground">Learn through games and interactive lessons!</p>
           </motion.div>
 
           <motion.div 
             variants={item}
-            className="p-6 rounded-2xl bg-primary/5 flex flex-col items-center gap-4"
+            className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >
-            <Book className="h-12 w-12 text-primary" />
-            <h3 className="text-xl font-bold">Expert Teachers</h3>
-            <p>Learn from friendly and caring teachers!</p>
+            <Book className="h-12 w-12 text-green-400" />
+            <h3 className="text-xl font-bold text-primary">Expert Teachers</h3>
+            <p className="text-muted-foreground">Learn from friendly and caring teachers!</p>
           </motion.div>
 
           <motion.div 
             variants={item}
-            className="p-6 rounded-2xl bg-primary/5 flex flex-col items-center gap-4"
+            className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl flex flex-col items-center gap-4"
           >
-            <Rocket className="h-12 w-12 text-blue-400" />
-            <h3 className="text-xl font-bold">Achieve Goals</h3>
-            <p>Watch yourself grow and succeed!</p>
+            <Rocket className="h-12 w-12 text-purple-400" />
+            <h3 className="text-xl font-bold text-primary">Achieve Goals</h3>
+            <p className="text-muted-foreground">Watch yourself grow and succeed!</p>
           </motion.div>
         </motion.div>
       </section>

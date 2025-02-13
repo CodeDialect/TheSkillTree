@@ -23,7 +23,7 @@ export function CourseCard({ course }: { course: Course }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="flex flex-col overflow-hidden border-2 border-primary/20 shadow-lg">
+      <Card className="flex flex-col overflow-hidden border-2 border-primary/10 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <CardHeader className="p-0">
           <div className="aspect-video w-full overflow-hidden">
             <img
@@ -33,10 +33,10 @@ export function CourseCard({ course }: { course: Course }) {
             />
           </div>
         </CardHeader>
-        <CardContent className="flex-grow p-6">
+        <CardContent className="flex-grow p-6 bg-gradient-to-b from-white to-blue-50/30">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="h-5 w-5 text-yellow-400" />
-            <CardTitle className="line-clamp-2 text-xl font-bold text-primary">
+            <CardTitle className="line-clamp-2 text-xl font-bold">
               {course.title}
             </CardTitle>
           </div>
@@ -44,7 +44,7 @@ export function CourseCard({ course }: { course: Course }) {
             {course.description}
           </CardDescription>
         </CardContent>
-        <CardFooter className="p-6 pt-0 bg-primary/5">
+        <CardFooter className="p-6 pt-0 bg-gradient-to-b from-blue-50/30 to-blue-50/10">
           <div className="flex w-full items-center justify-between">
             <span className="text-lg font-bold text-primary">
               ${Number(course.price).toFixed(2)}
@@ -53,7 +53,7 @@ export function CourseCard({ course }: { course: Course }) {
               onClick={() => addToCart(course)}
               className="rounded-full font-bold"
             >
-              Add to Cart 🎈
+              Add to Cart ✨
             </Button>
           </div>
         </CardFooter>
