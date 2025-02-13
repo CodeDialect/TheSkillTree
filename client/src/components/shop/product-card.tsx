@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/hooks/use-cart";
 
 export type Product = {
   id: number;
@@ -21,6 +22,8 @@ export type Product = {
 };
 
 export function ProductCard({ product }: { product: Product }) {
+  const { addToCart } = useCart();
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -52,7 +55,11 @@ export function ProductCard({ product }: { product: Product }) {
             <span className="text-lg font-bold text-primary">
               {formatCurrency(product.price)}
             </span>
-            <Button size="sm" className="rounded-full">
+            <Button 
+              size="sm" 
+              className="rounded-full"
+              onClick={() => addToCart(product, 'product')}
+            >
               <ShoppingCart className="h-4 w-4 mr-2" />
               Add to Cart
             </Button>

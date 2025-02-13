@@ -50,7 +50,7 @@ export function CourseCard({ course }: { course: Course }) {
               ${Number(course.price).toFixed(2)}
             </span>
             <Button 
-              onClick={() => addToCart(course)}
+              onClick={() => addToCart(course, 'course')}
               className="rounded-full font-bold"
             >
               Add to Cart ✨

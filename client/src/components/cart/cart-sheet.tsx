@@ -49,7 +49,7 @@ export function CartSheet() {
                   <div className="flex-1 space-y-1">
                     <h4 className="font-medium">{item.title}</h4>
                     <p className="text-sm text-muted-foreground">
-                      ${Number(item.price).toFixed(2)}
+                      {formatCurrency(item.price)}
                     </p>
                   </div>
                   <Button
