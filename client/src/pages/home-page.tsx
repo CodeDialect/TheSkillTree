@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CourseGrid } from "@/components/courses/course-grid";
 import { useQuery } from "@tanstack/react-query";
 import { Course } from "@shared/schema";
-import { Loader2, Sparkles, Book, Star, Rocket, Code, Megaphone, Brain, Video } from "lucide-react";
+import { Loader2, Sparkles, Book, Star, Rocket, Code, Megaphone, Brain, Video, Users, GraduationCap, Award, PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const container = {
@@ -84,39 +84,73 @@ export default function HomePage() {
               </Button>
             </motion.div>
           </div>
-          <div className="student-pic mt-12">
-            <motion.div 
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative w-full max-w-lg mx-auto"
-            >
-              <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"/>
-              <div className="absolute -bottom-8 -right-4 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"/>
-              <div className="absolute -bottom-4 left-20 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"/>
-              <motion.div 
-                className="relative"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <div className="bg-white p-4 rounded-2xl shadow-xl">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="w-8 h-8 text-primary" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-primary">25k+</h3>
-                      <p className="text-muted-foreground">Active Students</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
+          
         </motion.div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
+        <div className="container relative">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.div 
+              variants={item}
+              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="mb-4 inline-flex p-3 rounded-full bg-blue-100">
+                <GraduationCap className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-primary mb-2">1250+</h3>
+              <p className="text-muted-foreground">Total Courses</p>
+            </motion.div>
+
+            <motion.div 
+              variants={item}
+              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="mb-4 inline-flex p-3 rounded-full bg-green-100">
+                <PlayCircle className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-primary mb-2">500+</h3>
+              <p className="text-muted-foreground">Free Classes</p>
+            </motion.div>
+
+            <motion.div 
+              variants={item}
+              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="mb-4 inline-flex p-3 rounded-full bg-purple-100">
+                <Users className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-primary mb-2">25k+</h3>
+              <p className="text-muted-foreground">Active Students</p>
+            </motion.div>
+
+            <motion.div 
+              variants={item}
+              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="mb-4 inline-flex p-3 rounded-full bg-yellow-100">
+                <Award className="h-8 w-8 text-yellow-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-primary mb-2">250+</h3>
+              <p className="text-muted-foreground">Expert Mentors</p>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Decorative shapes */}
+        <div className="absolute left-0 top-0 -translate-x-1/2 translate-y-1/2">
+          <div className="w-24 h-24 rounded-full bg-blue-100 opacity-20 animate-blob" />
+        </div>
+        <div className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2">
+          <div className="w-24 h-24 rounded-full bg-purple-100 opacity-20 animate-blob animation-delay-2000" />
+        </div>
       </section>
 
       {/* Course Categories Section */}
