@@ -57,6 +57,38 @@ export default function HomePage() {
               </Button>
             </motion.div>
           </div>
+          <div className="student-pic mt-12">
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative w-full max-w-lg mx-auto"
+            >
+              <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"/>
+              <div className="absolute -bottom-8 -right-4 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"/>
+              <div className="absolute -bottom-4 left-20 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"/>
+              <motion.div 
+                className="relative"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <div className="bg-white p-4 rounded-2xl shadow-xl">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Star className="w-8 h-8 text-primary" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-primary">25k+</h3>
+                      <p className="text-muted-foreground">Active Students</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
