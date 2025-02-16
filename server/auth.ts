@@ -30,11 +30,13 @@ async function comparePasswords(supplied: string, stored: string) {
 
 export function setupAuth(app: Express) {
   const sessionSettings: session.SessionOptions = {
-    secret: process.env.SESSION_SECRET!,
+    secret: "ABC"!,
     resave: false,
     saveUninitialized: false,
     store: storage.sessionStore,
   };
+
+  console.log(sessionSettings);
 
   if (app.get("env") === "production") {
     app.set("trust proxy", 1);
