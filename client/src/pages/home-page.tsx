@@ -203,9 +203,38 @@ const testimonials = [
   },
 ];
 
-export default function HomePage() {
-  const { ref, inView } = useSectionInView();
+// Add responsive logo grid component
+const LogoCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % Math.ceil(logos.length / 2));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="overflow-hidden px-4 py-8">
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${activeIndex * 50}%)` }}
+      >
+        {[...logos, ...logos].map((logo, index) => (
+          <div key={index} className="min-w-[50%] px-2">
+            <img
+              src={logo}
+              alt="Supporter"
+              className="h-12 w-auto object-contain mx-auto md:h-16"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default function HomePage() {
   const [index, setIndex] = useState(0);
 
   const nextSlide = () => {
@@ -231,37 +260,39 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const { data: courses, isLoading } = useQuery<Course[]>({
-    queryKey: ["/api/courses"],
-  });
-  const fullLogos = [...logos, ...logos, ...logos];
-
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-hidden w-full">
       {/* Hero Section */}
-      <section className=" bg-white py-24 text-center">
+      <section className="bg-white py-12 md:py-24 px-4 text-center">
         <motion.div
-          className="container"
+          className="container mx-auto"
           variants={container}
           initial="hidden"
           animate="show"
         >
           <div className="max-w-3xl mx-auto">
             <motion.h1
-              className="text-5xl font-bold text-blue-600"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 leading-tight"
               variants={item}
             >
               Fun Learning for Kids! 🎨🚀
             </motion.h1>
-            <motion.p className="text-lg text-gray-600 mt-4" variants={item}>
+            <motion.p
+              className="text-base md:text-lg text-gray-600 mt-4 px-2"
+              variants={item}
+            >
               Interactive courses in Math, Science, Reading, and more. Let's
               explore!
             </motion.p>
             <motion.div
-              className="mt-6 flex justify-center gap-4"
+              className="mt-6 flex flex-col md:flex-row justify-center gap-4 px-4"
               variants={item}
             >
-              <Button size="lg" asChild className="rounded-full text-lg">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-full text-base md:text-lg"
+              >
                 <Link href="/courses">
                   <Rocket className="h-5 w-5" /> Start Learning!
                 </Link>
@@ -270,7 +301,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="rounded-full text-lg"
+                className="rounded-full text-base md:text-lg"
               >
                 <Link href="/book-demo">
                   <CalendarIcon className="h-5 w-5" /> Book Demo Class
@@ -287,142 +318,150 @@ export default function HomePage() {
       </section>
 
       {/* New Section: Improve Your Skills */}
-      <section className="py-16 relative flex flex-col md:flex-row items-center justify-between container mx-auto px-6">
-        <div className="max-w-xl text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
-            A Different Way to Improve Your Skills
-          </h2>
-          <p className="text-lg text-muted-foreground mb-6">
-            Learning should be fun! We provide interactive, engaging, and
-            hands-on courses to help kids explore and grow their talents in
-            creative and exciting ways.
-          </p>
-        </div>
+      <section className="py-12 md:py-16 container mx-auto px-4">
+        <section className="py-16 relative flex flex-col md:flex-row items-center justify-between container mx-auto px-6">
+          <div className="max-w-xl text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
+              A Different Way to Improve Your Skills
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Learning should be fun! We provide interactive, engaging, and
+              hands-on courses to help kids explore and grow their talents in
+              creative and exciting ways.
+            </p>
+          </div>
 
-        <div className="relative flex justify-center items-center mt-10 md:mt-0">
-          <img
-            src="/image1"
-            alt="Fun Learning"
-            className="w-80 h-auto drop-shadow-lg rounded-lg object-cover"
-          />
+          <div className="relative flex justify-center items-center mt-10 md:mt-0">
+            <img
+              src="/image1"
+              alt="Fun Learning"
+              className="w-80 h-auto drop-shadow-lg rounded-lg object-cover"
+            />
 
-          {/* Floating Animated Icons */}
-          <motion.div
-            className="absolute -top-8 -left-6 text-yellow-500"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            <Lightbulb className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
-          </motion.div>
+            {/* Floating Animated Icons */}
+            <motion.div
+              className="absolute -top-8 -left-6 text-yellow-500"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              <Lightbulb className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+            </motion.div>
 
-          <motion.div
-            className="absolute bottom-6 left-12 text-blue-500"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
-          >
-            <Puzzle className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
-          </motion.div>
+            <motion.div
+              className="absolute bottom-6 left-12 text-blue-500"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
+            >
+              <Puzzle className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+            </motion.div>
 
-          <motion.div
-            className="absolute top-8 right-10 text-green-500"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, delay: 1 }}
-          >
-            <Paintbrush className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
-          </motion.div>
-        </div>
+            <motion.div
+              className="absolute top-8 right-10 text-green-500"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+            >
+              <Paintbrush className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+            </motion.div>
+          </div>
+        </section>
       </section>
 
-      <section className="py-16 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
-        <div className="container relative">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            variants={container}
-            initial="hidden"
-            animate="show"
-          >
+      <section className="py-12 md:py-16 bg-white px-4">
+        <section className="py-16 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]" />
+          <div className="container relative">
             <motion.div
-              variants={item}
-              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="grid grid-cols-2 md:grid-cols-4 gap-8"
+              variants={container}
+              initial="hidden"
+              animate="show"
             >
-              <div className="mb-4 inline-flex p-3 rounded-full bg-blue-100">
-                <GraduationCap className="h-8 w-8 text-blue-600" />
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-2">1250+</h3>
-              <p className="text-muted-foreground">Total Courses</p>
-            </motion.div>
+              <motion.div
+                variants={item}
+                className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="mb-4 inline-flex p-3 rounded-full bg-blue-100">
+                  <GraduationCap className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-3xl font-bold text-primary mb-2">1250+</h3>
+                <p className="text-muted-foreground">Total Courses</p>
+              </motion.div>
 
-            <motion.div
-              variants={item}
-              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="mb-4 inline-flex p-3 rounded-full bg-green-100">
-                <PlayCircle className="h-8 w-8 text-green-600" />
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-2">500+</h3>
-              <p className="text-muted-foreground">Free Classes</p>
-            </motion.div>
+              <motion.div
+                variants={item}
+                className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="mb-4 inline-flex p-3 rounded-full bg-green-100">
+                  <PlayCircle className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-3xl font-bold text-primary mb-2">500+</h3>
+                <p className="text-muted-foreground">Free Classes</p>
+              </motion.div>
 
-            <motion.div
-              variants={item}
-              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="mb-4 inline-flex p-3 rounded-full bg-purple-100">
-                <Users className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-2">25k+</h3>
-              <p className="text-muted-foreground">Active Students</p>
-            </motion.div>
+              <motion.div
+                variants={item}
+                className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="mb-4 inline-flex p-3 rounded-full bg-purple-100">
+                  <Users className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-3xl font-bold text-primary mb-2">25k+</h3>
+                <p className="text-muted-foreground">Active Students</p>
+              </motion.div>
 
-            <motion.div
-              variants={item}
-              className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="mb-4 inline-flex p-3 rounded-full bg-yellow-100">
-                <Award className="h-8 w-8 text-yellow-600" />
-              </div>
-              <h3 className="text-3xl font-bold text-primary mb-2">250+</h3>
-              <p className="text-muted-foreground">Expert Mentors</p>
+              <motion.div
+                variants={item}
+                className="text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="mb-4 inline-flex p-3 rounded-full bg-yellow-100">
+                  <Award className="h-8 w-8 text-yellow-600" />
+                </div>
+                <h3 className="text-3xl font-bold text-primary mb-2">250+</h3>
+                <p className="text-muted-foreground">Expert Mentors</p>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Decorative shapes */}
-        <div className="absolute left-0 top-0 -translate-x-1/2 translate-y-1/2">
-          <div className="w-24 h-24 rounded-full bg-blue-100 opacity-20 animate-blob" />
-        </div>
-        <div className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2">
-          <div className="w-24 h-24 rounded-full bg-purple-100 opacity-20 animate-blob animation-delay-2000" />
-        </div>
+          {/* Decorative shapes */}
+          <div className="absolute left-0 top-0 -translate-x-1/2 translate-y-1/2">
+            <div className="w-24 h-24 rounded-full bg-blue-100 opacity-20 animate-blob" />
+          </div>
+          <div className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2">
+            <div className="w-24 h-24 rounded-full bg-purple-100 opacity-20 animate-blob animation-delay-2000" />
+          </div>
+        </section>
       </section>
 
       {/* Course Categories */}
-      <section className="py-16 bg-white">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold text-blue-700">
-            Explore by Category
-          </h2>
-          <p className="text-lg text-gray-600 mt-2">
-            Find courses tailored for you
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-            {demoCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                whileHover={{ scale: 1.05 }}
-                className={`p-6 rounded-xl shadow-md hover:shadow-lg transition ${category.bgColor}`}
-              >
-                <div className="flex justify-center mb-4">{category.icon}</div>
-                <h3 className="text-xl font-bold text-gray-700">
-                  {category.title}
-                </h3>
-                <p className="text-gray-600 mt-2">{category.description}</p>
-              </motion.div>
-            ))}
+      <section className="py-12 md:py-16 bg-white px-4">
+        <section className="py-16 bg-white">
+          <div className="container text-center">
+            <h2 className="text-3xl font-bold text-blue-700">
+              Explore by Category
+            </h2>
+            <p className="text-lg text-gray-600 mt-2">
+              Find courses tailored for you
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+              {demoCategories.map((category, index) => (
+                <motion.div
+                  key={index}
+                  variants={item}
+                  whileHover={{ scale: 1.05 }}
+                  className={`p-6 rounded-xl shadow-md hover:shadow-lg transition ${category.bgColor}`}
+                >
+                  <div className="flex justify-center mb-4">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-700">
+                    {category.title}
+                  </h3>
+                  <p className="text-gray-600 mt-2">{category.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </section>
       {/* Why Choose Us Section */}
       <section className="flex flex-col md:flex-row items-center py-16 bg-yellow-100 px-6 min-h-[80vh]">
@@ -477,34 +516,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white text-center">
+      <section className="py-16 bg-white px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-8 text-center">
             Getting Started is Super Easy!
           </h2>
-          <p className="text-gray-700 text-lg max-w-3xl mx-auto mb-8">
-            Take a demo session for FREE and decide for yourself; a functioning
-            PC & stable internet is all you need!
-          </p>
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center border-4 border-yellow-400 hover:border-yellow-500 transition-all"
+                className="bg-white p-6 rounded-2xl shadow-lg border-4 border-yellow-400"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <img
-                  src={step.image}
-                  alt={step.title}
-                  className="w-24 h-24 mb-4 rounded-full border-2 border-blue-400"
-                />
-                <h5 className="text-xl font-semibold text-blue-600 mb-2">
+                <div className="w-24 h-24 mb-4 rounded-full bg-blue-100 mx-auto flex items-center justify-center">
+                  <span className="text-3xl font-bold text-blue-600">
+                    {index + 1}
+                  </span>
+                </div>
+                <h5 className="text-xl font-semibold text-blue-600 mb-2 text-center">
                   {step.title}
                 </h5>
-                <p className="text-gray-600 text-sm">{step.description}</p>
+                <p className="text-gray-600 text-sm md:text-base text-center">
+                  {step.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -558,8 +594,6 @@ export default function HomePage() {
               </div>
             </motion.div>
           </div>
-
-          {/* Fixed Floating Image (No Blinking) */}
           <div className="lg:w-1/2 flex justify-center">
             <motion.div
               animate={{ y: [0, -10, 0] }}
@@ -576,26 +610,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-700 mb-10 tracking-wide">
+      {/* Key Supporters */}
+      <section className="py-16 bg-white px-4">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-8">
             Our Key Supporters
           </h2>
-        </div>
-
-        <div className="flex justify-center gap-16 px-10 py-6">
-          {visibleLogos.slice(0, 5).map((logo, index) => (
-            <motion.img
-              key={index}
-              src={logo}
-              alt="Supporter Logo"
-              className="h-20 w-auto md:h-24 lg:h-28"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-          ))}
+          <LogoCarousel />
         </div>
       </section>
 
@@ -664,8 +685,6 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-
-          {/* View All Button */}
           <div className="text-center mt-10">
             <Button
               size="lg"
@@ -723,6 +742,125 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-16 bg-blue-50 px-4">
+        <div className="container mx-auto px-6 text-center">
+        <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-700 mb-10 tracking-wide">
+              Testinominals
+            </h2>
+            <h2 className="text-4xl font-bold text-gray-800 mt-2">
+            What Our Students{" "}
+              <span className="text-blue-600 relative">
+                Say{" "}
+                <i className="absolute left-0 bottom-[-5px] w-full h-2 bg-yellow-400 opacity-50"></i>
+              </span>
+            </h2>
+          </div>
+          {/* Desktop Carousel */}
+          <div className="hidden md:block relative overflow-hidden py-8">
+            <div
+              className="flex transition-transform duration-300 ease-out"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
+              {/* Double the testimonials for seamless transition */}
+              {[...testimonials, ...testimonials].map((testimonial, i) => (
+                <div key={i} className="w-full flex-shrink-0">
+                  <div className="grid grid-cols-3 gap-8 px-4">
+                    {testimonials.map((t, j) => (
+                      <motion.div
+                        key={`${i}-${j}`}
+                        className="bg-white p-6 rounded-2xl shadow-lg"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                      >
+                        <div className="flex items-center gap-4 mb-4">
+                          <img
+                            src={t.image}
+                            alt={t.name}
+                            className="w-16 h-16 rounded-full"
+                          />
+                          <div>
+                            <h3 className="text-lg font-semibold">{t.name}</h3>
+                            <p className="text-gray-500 text-sm">{t.role}</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-1 text-yellow-500 mb-3">
+                          {"★".repeat(t.rating)}
+                        </div>
+                        <p className="text-gray-600">"{t.text}"</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            {/* Mobile - Carousel */}
+            <div className="md:hidden relative overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${index * 100}%)` }}
+              >
+                {testimonials.map((testimonial, i) => (
+                  <div key={i} className="w-full flex-shrink-0 p-4">
+                    <motion.div
+                      className="bg-white p-6 rounded-2xl shadow-lg"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                    >
+                      <div className="flex flex-col items-center gap-4 mb-4">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full"
+                        />
+                        <div className="text-center">
+                          <h3 className="text-lg font-semibold">
+                            {testimonial.name}
+                          </h3>
+                          <p className="text-gray-500 text-sm">
+                            {testimonial.role}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-center gap-1 text-yellow-500 mb-3">
+                        {"★".repeat(testimonial.rating)}
+                      </div>
+                      <p className="text-gray-600 text-center">
+                        "{testimonial.text}"
+                      </p>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Controls */}
+              <div className="flex justify-center gap-4 mt-6">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={prevSlide}
+                  className="rounded-full p-2"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={nextSlide}
+                  className="rounded-full p-2"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="flex flex-wrap items-center py-16 bg-white relative">
         {/* Left Image Section */}
         <div className="w-full lg:w-7/12 flex justify-center lg:pl-12 px-6 mb-10 lg:mb-0 relative">
