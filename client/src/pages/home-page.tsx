@@ -287,9 +287,9 @@ export default function HomePage() {
       </section>
 
       {/* New Section: Improve Your Skills */}
-      <section className="py-16 bg-gradient-to-r from-purple-100 to-blue-100 relative flex flex-col md:flex-row items-center justify-between container mx-auto px-6">
+      <section className="py-16 relative flex flex-col md:flex-row items-center justify-between container mx-auto px-6">
         <div className="max-w-xl text-center md:text-left">
-          <h2 className="text-4xl font-bold text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
             A Different Way to Improve Your Skills
           </h2>
           <p className="text-lg text-muted-foreground mb-6">
@@ -298,21 +298,38 @@ export default function HomePage() {
             creative and exciting ways.
           </p>
         </div>
+
         <div className="relative flex justify-center items-center mt-10 md:mt-0">
           <img
             src="/image1"
             alt="Fun Learning"
-            className="w-80 h-auto drop-shadow-lg rounded-lg"
+            className="w-80 h-auto drop-shadow-lg rounded-lg object-cover"
           />
-          <div className="absolute -top-8 -left-6 text-yellow-500">
-            <Lightbulb className="h-12 w-12" />
-          </div>
-          <div className="absolute bottom-6 left-12 text-blue-500">
-            <Puzzle className="h-12 w-12" />
-          </div>
-          <div className="absolute top-8 right-10 text-green-500">
-            <Paintbrush className="h-12 w-12" />
-          </div>
+
+          {/* Floating Animated Icons */}
+          <motion.div
+            className="absolute -top-8 -left-6 text-yellow-500"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          >
+            <Lightbulb className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-6 left-12 text-blue-500"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
+          >
+            <Puzzle className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-8 right-10 text-green-500"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+          >
+            <Paintbrush className="h-12 w-12 hover:scale-110 transition-transform duration-300" />
+          </motion.div>
         </div>
       </section>
 
@@ -707,224 +724,260 @@ export default function HomePage() {
       </section>
 
       <section className="flex flex-wrap items-center py-16 bg-white relative">
-      {/* Left Image Section */}
-      <div className="w-full lg:w-7/12 flex justify-center lg:pl-12 px-6 mb-10 lg:mb-0 relative">
-        <motion.div
-          className="relative"
-          initial={{ x: -30, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <img
-            src="https://gopalkatoch.com/ver/wp-content/uploads/2024/12/Join-Now.png"
-            alt="Join Now"
-            className="w-full max-w-md"
-          />
-        </motion.div>
-      </div>
-
-      {/* Right Content Section */}
-      <div className="w-full lg:w-5/12 px-6">
-        <motion.div
-          className="ml-0 lg:ml-5"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-        >
-          <h2 className="text-3xl font-bold mb-6 leading-tight">
-            Unleash your creativity and showcase your talents!
-          </h2>
-          <p className="text-gray-700 mb-6">
-            Every month, we host an exciting Show & Tell event where students
-            from all programs can participate. Share your stories, projects, or
-            skills, and stand a chance to win amazing rewards like Amazon
-            vouchers or extra class credits!
-          </p>
-
-          {/* Features List */}
-          <ul className="space-y-4 mb-8">
-            <motion.li
-              className="flex items-center text-lg"
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-            >
-              <Send className="text-blue-600 mr-3" size={24} />
-              Boost Confidence
-            </motion.li>
-            <motion.li
-              className="flex items-center text-lg"
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-            >
-              <User className="text-blue-600 mr-3" size={24} />
-              Expert Hosts
-            </motion.li>
-            <motion.li
-              className="flex items-center text-lg"
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-            >
-              <FileText className="text-blue-600 mr-3" size={24} />
-              Get Certificate
-            </motion.li>
-            <motion.li
-              className="flex items-center text-lg"
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.7 }}
-            >
-              <Calendar className="text-blue-600 mr-3" size={24} />
-              Lifetime Access
-            </motion.li>
-          </ul>
-
-          {/* CTA Button */}
+        {/* Left Image Section */}
+        <div className="w-full lg:w-7/12 flex justify-center lg:pl-12 px-6 mb-10 lg:mb-0 relative">
           <motion.div
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut", delay: 0.8 }}
+            className="relative"
+            initial={{ x: -30, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="rounded-full text-lg"
-            >
-              <Link href="#">Register</Link>
-            </Button>
+            <img
+              src="https://gopalkatoch.com/ver/wp-content/uploads/2024/12/Join-Now.png"
+              alt="Join Now"
+              className="w-full max-w-md"
+            />
           </motion.div>
-        </motion.div>
-      </div>
-    </section>
-    <section className="bg-blue-600 py-16">
-      <div className="container mx-auto px-6 lg:px-16">
-        <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col lg:flex-row items-center justify-between">
-          {/* Left Text */}
-          <motion.div
-            className="text-center lg:text-left mb-6 lg:mb-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-2xl font-semibold text-gray-900">
-              Subscribe to our newsletter to receive  
-              <span className="text-blue-600"> latest news</span> on our services.
-            </h3>
-          </motion.div>
-
-          {/* Subscription Form */}
-          <motion.form
-            className="flex w-full lg:w-auto bg-gray-100 rounded-full p-2 shadow-inner"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="relative flex items-center w-full">
-              <Mail className="absolute left-4 text-gray-500" size={20} />
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-                className="w-full lg:w-72 pl-12 pr-4 py-3 rounded-full bg-white text-gray-700 outline-none border border-gray-300 focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
-            <Button
-              type="submit"
-              size="lg"
-              className="ml-4 rounded-full px-6 bg-blue-600 text-white hover:bg-blue-700 transition"
-            >
-              Subscribe
-            </Button>
-          </motion.form>
         </div>
-      </div>
-    </section>
-    <footer className="relative bg-blue-600 text-white py-12 overflow-hidden">
-      {/* Background Waves */}
-      <div className="absolute bottom-0 left-0 w-full">
-        <svg className="w-full h-20 text-white opacity-50" viewBox="0 0 1440 320">
-          <path fill="currentColor" d="M0,96L60,85.3C120,75,240,53,360,53.3C480,53,600,75,720,96C840,117,960,139,1080,138.7C1200,139,1320,117,1380,106.7L1440,96V320H1380C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320H0Z"></path>
-        </svg>
-      </div>
 
-      <div className="container mx-auto px-6 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          
-          {/* About Section */}
+        {/* Right Content Section */}
+        <div className="w-full lg:w-5/12 px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            className="ml-0 lg:ml-5"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           >
-            <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
-              <Smile className="mr-2 text-yellow-300" /> About Us
-            </h3>
-            <p className="text-sm">
-              We make learning fun and interactive for kids in grades 1-8.
-              Explore new subjects with engaging activities!
+            <h2 className="text-3xl font-bold mb-6 leading-tight">
+              Unleash your creativity and showcase your talents!
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Every month, we host an exciting Show & Tell event where students
+              from all programs can participate. Share your stories, projects,
+              or skills, and stand a chance to win amazing rewards like Amazon
+              vouchers or extra class credits!
             </p>
-          </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
-              <BookOpen className="mr-2 text-green-300" /> Quick Links
-            </h3>
-            <ul className="space-y-2">
-              <li><Link href="/" className="hover:text-yellow-300 flex items-center"><Home className="mr-2" /> Home</Link></li>
-              <li><Link href="/courses" className="hover:text-yellow-300 flex items-center"><GraduationCap className="mr-2" /> Courses</Link></li>
-              <li><Link href="/about" className="hover:text-yellow-300 flex items-center"><Smile className="mr-2" /> About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-yellow-300 flex items-center"><Mail className="mr-2" /> Contact</Link></li>
+            {/* Features List */}
+            <ul className="space-y-4 mb-8">
+              <motion.li
+                className="flex items-center text-lg"
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.4 }}
+              >
+                <Send className="text-blue-600 mr-3" size={24} />
+                Boost Confidence
+              </motion.li>
+              <motion.li
+                className="flex items-center text-lg"
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+              >
+                <User className="text-blue-600 mr-3" size={24} />
+                Expert Hosts
+              </motion.li>
+              <motion.li
+                className="flex items-center text-lg"
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.6 }}
+              >
+                <FileText className="text-blue-600 mr-3" size={24} />
+                Get Certificate
+              </motion.li>
+              <motion.li
+                className="flex items-center text-lg"
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.7 }}
+              >
+                <Calendar className="text-blue-600 mr-3" size={24} />
+                Lifetime Access
+              </motion.li>
             </ul>
-          </motion.div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
-              <Mail className="mr-2 text-red-300" /> Contact Us
-            </h3>
-            <p className="text-sm">📍 123 Learning St, Kidsville</p>
-            <p className="text-sm">📞 (123) 456-7890</p>
-            <p className="text-sm">📧 hello@kidslms.com</p>
-          </motion.div>
-        </div>
-
-        {/* Bottom Section with Bouncing Stars */}
-        <div className="mt-10 flex justify-center items-center space-x-6">
-          <motion.div
-            className="text-yellow-300"
-            initial={{ y: 0 }}
-            animate={{ y: [-5, 5, -5] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <Star size={24} />
-          </motion.div>
-
-          <p className="text-sm">&copy; 2025 Kids LMS. All rights reserved.</p>
-
-          <motion.div
-            className="text-yellow-300"
-            initial={{ y: 0 }}
-            animate={{ y: [5, -5, 5] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <Star size={24} />
+            {/* CTA Button */}
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: 0.8 }}
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="rounded-full text-lg"
+              >
+                <Link href="#">Register</Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
-    </footer>
+      </section>
+      <section className="bg-blue-600 py-16">
+        <div className="container mx-auto px-6 lg:px-16">
+          <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col lg:flex-row items-center justify-between">
+            {/* Left Text */}
+            <motion.div
+              className="text-center lg:text-left mb-6 lg:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-semibold text-gray-900">
+                Subscribe to our newsletter to receive
+                <span className="text-blue-600"> latest news</span> on our
+                services.
+              </h3>
+            </motion.div>
+
+            {/* Subscription Form */}
+            <motion.form
+              className="flex w-full lg:w-auto bg-gray-100 rounded-full p-2 shadow-inner"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="relative flex items-center w-full">
+                <Mail className="absolute left-4 text-gray-500" size={20} />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  className="w-full lg:w-72 pl-12 pr-4 py-3 rounded-full bg-white text-gray-700 outline-none border border-gray-300 focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                size="lg"
+                className="ml-4 rounded-full px-6 bg-blue-600 text-white hover:bg-blue-700 transition"
+              >
+                Subscribe
+              </Button>
+            </motion.form>
+          </div>
+        </div>
+      </section>
+      <footer className="relative bg-blue-600 text-white py-12 overflow-hidden">
+        {/* Background Waves */}
+        <div className="absolute bottom-0 left-0 w-full">
+          <svg
+            className="w-full h-20 text-white opacity-50"
+            viewBox="0 0 1440 320"
+          >
+            <path
+              fill="currentColor"
+              d="M0,96L60,85.3C120,75,240,53,360,53.3C480,53,600,75,720,96C840,117,960,139,1080,138.7C1200,139,1320,117,1380,106.7L1440,96V320H1380C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320H0Z"
+            ></path>
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            {/* About Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
+                <Smile className="mr-2 text-yellow-300" /> About Us
+              </h3>
+              <p className="text-sm">
+                We make learning fun and interactive for kids in grades 1-8.
+                Explore new subjects with engaging activities!
+              </p>
+            </motion.div>
+
+            {/* Quick Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
+                <BookOpen className="mr-2 text-green-300" /> Quick Links
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:text-yellow-300 flex items-center"
+                  >
+                    <Home className="mr-2" /> Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/courses"
+                    className="hover:text-yellow-300 flex items-center"
+                  >
+                    <GraduationCap className="mr-2" /> Courses
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="hover:text-yellow-300 flex items-center"
+                  >
+                    <Smile className="mr-2" /> About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="hover:text-yellow-300 flex items-center"
+                  >
+                    <Mail className="mr-2" /> Contact
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h3 className="text-xl font-bold mb-4 flex items-center justify-center md:justify-start">
+                <Mail className="mr-2 text-red-300" /> Contact Us
+              </h3>
+              <p className="text-sm">📍 123 Learning St, Kidsville</p>
+              <p className="text-sm">📞 (123) 456-7890</p>
+              <p className="text-sm">📧 hello@kidslms.com</p>
+            </motion.div>
+          </div>
+
+          {/* Bottom Section with Bouncing Stars */}
+          <div className="mt-10 flex justify-center items-center space-x-6">
+            <motion.div
+              className="text-yellow-300"
+              initial={{ y: 0 }}
+              animate={{ y: [-5, 5, -5] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <Star size={24} />
+            </motion.div>
+
+            <p className="text-sm">
+              &copy; 2025 Kids LMS. All rights reserved.
+            </p>
+
+            <motion.div
+              className="text-yellow-300"
+              initial={{ y: 0 }}
+              animate={{ y: [5, -5, 5] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <Star size={24} />
+            </motion.div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
