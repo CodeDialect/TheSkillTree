@@ -20,12 +20,12 @@ function Router() {
       <main>
         <Switch>
           <Route path="/" component={HomePage} />
-          <Route path="/auth" component={AuthPage} />
+          {/* <Route path="/auth" component={AuthPage} /> */}
           <Route path="/courses" component={CoursesPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/book-demo" component={BookingPage} />
-          <Route path="/shop" component={ShopPage} />
+          {/* <Route path="/shop" component={ShopPage} /> */}
           <Route component={NotFound} />
         </Switch>
       </main>

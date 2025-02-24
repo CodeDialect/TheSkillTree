@@ -7,7 +7,7 @@ import { CartSheet } from "../cart/cart-sheet";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
-  { href: "/shop", label: "Shop" },
+  // { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -37,7 +37,7 @@ export function MainNav() {
             ))}
           </nav>
         </div>
-        <div className="ml-auto flex items-center space-x-4">
+        {/* <div className="ml-auto flex items-center space-x-4">
           <CartSheet />
           {user ? (
             <UserNav user={user} />
@@ -46,7 +46,7 @@ export function MainNav() {
               <Link href="/auth">Sign In</Link>
             </Button>
           )}
-        </div>
+        </div> */}
       </div>
     </header>
   );
